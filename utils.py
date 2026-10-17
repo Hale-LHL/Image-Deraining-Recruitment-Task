@@ -1,8 +1,18 @@
 import torch
 import numpy as np
-from skimage.metrics import peak_signal_noise_ratio as psnr
+#from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import structural_similarity as ssim
 from torchvision.utils import save_image
+
+
+def cal_psnr(img_target,img_pred,data_range):
+    error = img_pred - img_target
+    mse = np.mean(error ** 2)
+    if mse ==0:
+        return float('inf')
+    else:
+        return 10 * np.log10(data_range ** 2 / mse)
+
 
 
 def calculate_metrics(img1, img2, lpips_fn):
@@ -14,7 +24,7 @@ def calculate_metrics(img1, img2, lpips_fn):
 
     batch_psnr, batch_ssim = 0, 0
     for i in range(img1_np.shape[0]):
-        batch_psnr += psnr(img1_np[i], img2_np[i], data_range=1.0)
+        batch_psnr += cal_psnr(img1_np[i], img2_np[i], data_range=1.0)
         batch_ssim += ssim(img1_np[i], img2_np[i], data_range=1.0, multichannel=True, channel_axis=2, win_size=7)
 
     avg_psnr = batch_psnr / img1_np.shape[0]
@@ -27,6 +37,7 @@ def calculate_metrics(img1, img2, lpips_fn):
         lpips_score = lpips_fn(img1_lpips, img2_lpips).mean().item()
 
     return avg_psnr, avg_ssim, lpips_score
+
 
 
 def save_checkpoint(state, folder="checkpoints", filename="checkpoint.pth.tar"):

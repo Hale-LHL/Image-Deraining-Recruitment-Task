@@ -1,0 +1,19 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 编辑器
+.idea/
+.vscode/
+
+# 数据与训练产物（体积大，不进仓库）
+data/
+evaluation_images/
+logs/
+_exp_archive/
+
+# 模型权重：4 个 unet 权重各约 88MB，禁止提交
+checkpoints/*
+!checkpoints/best_baseline.pth.tar
+!checkpoints/best_DerainNet.pth.tar
