@@ -46,19 +46,16 @@ class PerceptualLoss(nn.Module):
 1. 向量就是一个有序的数组（也可以是一个有向箭头，起点为原点时通常可以表示成一个点），且是只有一维的张量。维度是长、宽、高、时间等衡量的参数，在向量中体现为分量数目，如[2,3,4,5]是四维的。（看到一个有趣的广义维度解释：维度是事物“有联系”的抽象概念的数量，也就是影响这个概念存在的多个方面，那招新题何尝不是我的一个维度呢（已疯））
 2. 内积 （算gram矩阵的方法）
 
-- 代数定义（坐标形式）
+- 代数定义（坐标形式） $\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i y_i = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n$
 
-$\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i y_i = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n$
 
-- 几何定义（长度与夹角形式）
+- 几何定义（长度与夹角形式） $\langle \mathbf{x}, \mathbf{y} \rangle = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos\theta$
 
-$\langle \mathbf{x}, \mathbf{y} \rangle = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos\theta$
 
 - 其中 $\theta$ 是两个向量的夹角。
 - 内积可以计算线性代数中的角度，从而关系到投影，位置关系，以及矩阵从乘法的几何意义（3blue1brown 的视频里讲的网格图随基向量的角度变化）
 
-3. 知道内积可以知道向量之间的大小+方向的相似性，但如果要判别单独的方向相似性，就要用到余弦相似度，把内积中的长度除掉。公式如下：
-   $\mathrm{cos\_sim}(\mathbf{x}, \mathbf{y}) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle} {\lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert} = \cos\theta \in [-1,\, 1]$
+3. 知道内积可以知道向量之间的大小+方向的相似性，但如果要判别单独的方向相似性，就要用到余弦相似度，把内积中的长度除掉。公式如下： $\mathrm{cos\_sim}(\mathbf{x}, \mathbf{y}) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle} {\lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert} = \cos\theta \in [-1,\, 1]$
 
 ## 改造损失函数
 
