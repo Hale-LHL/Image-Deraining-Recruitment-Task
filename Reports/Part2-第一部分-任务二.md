@@ -62,7 +62,7 @@ class DerainNet(nn.Module):
 ```
 
 2. 结果如下：  
-   ![pasted-image.png · 174](https://img.cdn1.vip/i/6ad2e2a82c523_1792205480.webp)
+   ![DerainNet epoch 50 结果](./images/derainnet_e50.png)
 3. 思考：为什么 DerainNet 要先下采样后上采样？下采样、上采样是什么？什么是 Concat？
 
 - DerainNet的下采样有几个目的：

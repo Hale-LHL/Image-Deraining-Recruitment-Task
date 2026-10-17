@@ -5,7 +5,7 @@
 ### 1. 环境搭建
 
 1. 虚拟环境名为qvyv,截图如下:  
-   ![配置.png · 353](https://img.cdn1.vip/i/6accd9ea9589c_1791810026.webp)
+   ![虚拟环境配置截图](./images/env_setup.png)
 
 ### 2. 实现模型
 
@@ -72,7 +72,7 @@ for i in range(7):
 
 1. 结果如图：
 
-![结果.png · 537](https://img.cdn1.vip/i/6acd7a2c02eed_1791851052.webp)
+![baseline 100 轮训练结果](./images/baseline_100ep.png)
 
 2. 新代码学习笔记
 

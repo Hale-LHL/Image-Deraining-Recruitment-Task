@@ -39,7 +39,7 @@ class PerceptualLoss(nn.Module):
 
 训练与测试结果如下：
 
-![结果_带新的loss.png · 433](https://img.cdn1.vip/i/6ad2debaab56d_1792204474.webp)
+![感知损失训练测试结果](./images/perceptual_loss.png)
 
 ## 向量
 
@@ -48,30 +48,17 @@ class PerceptualLoss(nn.Module):
 
 - 代数定义（坐标形式）
 
-$$
-\langle \mathbf{x}, \mathbf{y} \rangle
-= \sum_{i=1}^{n} x_i y_i
-= x_1 y_1 + x_2 y_2 + \cdots + x_n y_n
-$$
+$\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i y_i = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n$
 
 - 几何定义（长度与夹角形式）
 
-$$
-\langle \mathbf{x}, \mathbf{y} \rangle
-= \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos\theta
-$$
+$\langle \mathbf{x}, \mathbf{y} \rangle = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos\theta$
 
 - 其中 $\theta$ 是两个向量的夹角。
 - 内积可以计算线性代数中的角度，从而关系到投影，位置关系，以及矩阵从乘法的几何意义（3blue1brown 的视频里讲的网格图随基向量的角度变化）
 
 3. 知道内积可以知道向量之间的大小+方向的相似性，但如果要判别单独的方向相似性，就要用到余弦相似度，把内积中的长度除掉。公式如下：
-   $$
-   \mathrm{cos\_sim}(\mathbf{x}, \mathbf{y})
-   = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}
-          {\lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert}
-   = \cos\theta
-   \in [-1,\, 1]
-   $$
+   $\mathrm{cos\_sim}(\mathbf{x}, \mathbf{y}) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle} {\lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert} = \cos\theta \in [-1,\, 1]$
 
 ## 改造损失函数
 
@@ -134,4 +121,4 @@ python -c "import torch;from losses.easy_contrastive_loss import Easy_contrastiv
 ```
 
 也可只训练一轮来验证代码写没写对：  
-![两个loss都用.png · 301](https://img.cdn1.vip/i/6ad2dfd41805d_1792204756.webp)
+![两个损失同时启用](./images/two_loss.png)
