@@ -29,7 +29,7 @@ class PerceptualLoss(nn.Module):
         self.ada = nn.AdaptiveAvgPool2d((None, 1))
 
     def forward(self, generated, ground_truth):
-        generated_feature = self.net((generated - self.mean) / self.std)  # ⑤ 整条链走一遍
+        generated_feature = self.net((generated - self.mean) / self.std)  
         truth_feature = self.net((ground_truth - self.mean) / self.std)
         generated_feature_1 = self.ada(generated_feature)
         truth_feature_1 = self.ada(truth_feature)
@@ -49,11 +49,11 @@ class PerceptualLoss(nn.Module):
 - 代数定义（坐标形式） $\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i y_i = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n$
 
 
-- 几何定义（长度与夹角形式） $\langle \mathbf{x}, \mathbf{y} \rangle = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos\theta$
+- 几何定义（长度与夹角形式） $\langle \mathbf{x}, \mathbf{y} \rangle = \lVert \mathbf{x} \rVert · \lVert \mathbf{y} \rVert \cos\theta$
 
 
 - 其中 $\theta$ 是两个向量的夹角。
-- 内积可以计算线性代数中的角度，从而关系到投影，位置关系，以及矩阵从乘法的几何意义（3blue1brown 的视频里讲的网格图随基向量的角度变化）
+- 内积可以计算线性代数中的角度，从而关系到投影，位置关系，以及矩阵乘法的几何意义（3blue1brown 的视频里讲的网格图随基向量的角度变化）
 
 3. 知道内积可以知道向量之间的大小+方向的相似性，但如果要判别单独的方向相似性，就要用到余弦相似度，把内积中的长度除掉。公式如下： $\mathrm{cos\_sim}(\mathbf{x}, \mathbf{y}) = \frac{\langle \mathbf{x}, \mathbf{y} \rangle} {\lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert} = \cos\theta \in [-1,\, 1]$
 
@@ -95,7 +95,7 @@ class Easy_contrastive_loss(nn.Module):
         self.to(self.device).eval()
 
     def forward(self, generated, ground_truth,raw):
-        generated_feature = self.net((generated - self.mean) / self.std)  # ⑤ 整条链走一遍
+        generated_feature = self.net((generated - self.mean) / self.std)  
         truth_feature = self.net((ground_truth - self.mean) / self.std)
         raw_feature = self.net((raw - self.mean) / self.std)
         raw_feature = self.pool(raw_feature).flatten(1)
