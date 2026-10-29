@@ -19,9 +19,7 @@ class PerceptualLoss(nn.Module):
         self.to(self.device).eval()
 
     def forward(self, generated, ground_truth):
-        generated_feature = self.net((generated - self.mean) / self.std)  # ⑤ 整条链走一遍
+        generated_feature = self.net((generated - self.mean) / self.std)
         truth_feature = self.net((ground_truth - self.mean) / self.std)
-        generated_feature_1 = self.ada(generated_feature)
-        truth_feature_1 = self.ada(truth_feature)
-        loss= self.loss_fn(generated_feature_1, truth_feature_1)
+        loss= self.loss_fn(generated_feature, truth_feature)
         return loss
