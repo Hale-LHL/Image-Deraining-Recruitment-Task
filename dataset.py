@@ -18,8 +18,8 @@ class DerainDataset(Dataset):
         if self.is_train:
             self.transform = transforms.Compose([
                 transforms.Resize((image_size, image_size)),
-                transforms.RandomCrop(image_size),
-                transforms.RandomHorizontalFlip(),
+                # transforms.RandomCrop(image_size),
+                # transforms.RandomHorizontalFlip(),
                 transforms.ToTensor()
             ])
         else:
